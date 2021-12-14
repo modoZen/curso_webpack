@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "node ./scripts/create-env.js",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack --config webpack.config.dev.js",
     "watch":"npm run dev --watch"
