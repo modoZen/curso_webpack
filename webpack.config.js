@@ -1,4 +1,5 @@
 const path = require('path');
+const htmlWebpackPligin = require('html-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports={
@@ -14,11 +15,22 @@ module.exports={
         rules:[
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 use:{
-                    loader:'babel-loader'
+                    loader:'babel-loader',
+                    options:{
+                        presets:['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                    }
                 },
-                exclude: /node_modules/
             }
         ]
-    }
+    },
+    plugins:[
+        new htmlWebpackPligin({
+            inject:'body',
+            template:'./public/index.html',
+            filename: './index.html'
+        })
+    ]
 }
