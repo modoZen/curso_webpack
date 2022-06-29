@@ -1,14 +1,15 @@
 const path = require('path');
 const HtmlWebpackPligin = require('html-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports={
     entry:'./src/index.js',
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js'
+        filename: 'main.js',
+        assetModuleFilename:'assets/images/[hash][ext][query]'
     },
     resolve:{
         extensions:['.js']
@@ -32,6 +33,10 @@ module.exports={
                      'css-loader',
                      'sass-loader'
                     ]
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset/resource"
             }
         ]
     },
@@ -42,13 +47,13 @@ module.exports={
             filename: './index.html'
         }),
         new MiniCssExtractPlugin(),
-        new CopyPlugin({
-            patterns:[
-                {
-                    from: path.resolve(__dirname,'src','assets/images'),
-                    to: "assets/images"
-                }
-            ]
-        }),
+        // new CopyPlugin({
+        //     patterns:[
+        //         {
+        //             from: path.resolve(__dirname,'src','assets/images'),
+        //             to: "assets/images"
+        //         }
+        //     ]
+        // }),
     ]
 }
