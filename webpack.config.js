@@ -1,5 +1,6 @@
 const path = require('path');
-const htmlWebpackPligin = require('html-webpack-plugin');
+const HtmlWebpackPligin = require('html-webpack-plugin');
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports={
@@ -23,14 +24,22 @@ module.exports={
                         plugins: ['@babel/plugin-transform-runtime']
                     }
                 },
+            },
+            {
+                test: /\.s?css$/i,
+                use: [MiniCssExtractPlugin.loader,
+                     'css-loader',
+                     'sass-loader'
+                    ]
             }
         ]
     },
     plugins:[
-        new htmlWebpackPligin({
+        new HtmlWebpackPligin({
             inject:'body',
             template:'./public/index.html',
             filename: './index.html'
-        })
+        }),
+        new MiniCssExtractPlugin(),
     ]
 }

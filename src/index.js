@@ -1,5 +1,7 @@
 import Template from './templates/Template.js';
-console.log('hola');
+import './styles/main.css';
+import './styles/styles.scss';
+console.warn('slava Stalin');
 
 (async function App() {
   const main = null || document.getElementById('main');
