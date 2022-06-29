@@ -8,21 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/modoZen/curso_webpack.git"
+    "url": "git+https://github.com/gndx/js-portfolio.git"
   },
   "keywords": [
     "javascript",
     "html",
     "css"
   ],
-  "author": "Max Diaz <mdiazn@uni.pe>",
+  "author": "oscar barajas <oscar@gndx.dev>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/modoZen/curso_webpack/issues"
+    "url": "https://github.com/gndx/js-portfolio/issues"
   },
-  "homepage": "https://github.com/modoZen/curso_webpack#readme",
-  "devDependencies": {
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0"
-  }
+  "homepage": "https://github.com/gndx/js-portfolio#readme"
 }
