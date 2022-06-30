@@ -2,13 +2,15 @@ const path = require('path');
 const HtmlWebpackPligin = require('html-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 // const CopyPlugin = require('copy-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports={
     entry:'./src/index.js',
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
+        filename: '[name].[contenthash].js',
         assetModuleFilename:'assets/images/[hash][ext][query]'
     },
     resolve:{
@@ -54,7 +56,9 @@ module.exports={
             template:'./public/index.html',
             filename: './index.html'
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename:'assets/[name].[contenthash].css'
+        }),
         // new CopyPlugin({
         //     patterns:[
         //         {
@@ -63,5 +67,12 @@ module.exports={
         //         }
         //     ]
         // }),
-    ]
+    ],
+    optimization:{
+        minimize: true,
+        minimizer:[
+            new CssMinimizerPlugin(),
+            new TerserPlugin(),
+        ]
+    }
 }
