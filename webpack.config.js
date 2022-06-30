@@ -12,8 +12,10 @@ module.exports={
     output:{
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
-        assetModuleFilename:'assets/images/[hash][ext][query]'
+        assetModuleFilename:'assets/images/[hash][ext][query]',
+        clean: true,
     },
+    mode: 'production',
     resolve:{
         extensions:['.js'],
         alias:{
