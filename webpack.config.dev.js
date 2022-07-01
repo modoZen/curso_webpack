@@ -13,25 +13,22 @@ module.exports={
     },
     mode: 'development',
     resolve:{
-        extensions:['.js'],
+        extensions:['.js','.jsx'],
         alias:{
             '@utils':       path.resolve(__dirname,'src/utils/'),
             '@templates':   path.resolve(__dirname,'src/templates/'),
             '@styles':      path.resolve(__dirname, 'src/styles/'),
             '@images':      path.resolve(__dirname, 'src/assets/images/'),
+            "@components": path.resolve(__dirname, 'src/components/')
         }
     },
     module:{
         rules:[
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use:{
                     loader:'babel-loader',
-                    options:{
-                        presets:['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
-                    }
                 },
             },
             {

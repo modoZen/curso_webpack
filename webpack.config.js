@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPligin = require('html-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv       = require('dotenv-webpack');
@@ -17,25 +16,22 @@ module.exports={
     },
     mode: 'production',
     resolve:{
-        extensions:['.js'],
+        extensions:['.js','.jsx'],
         alias:{
             '@utils':       path.resolve(__dirname,'src/utils/'),
             '@templates':   path.resolve(__dirname,'src/templates/'),
             '@styles':      path.resolve(__dirname, 'src/styles/'),
             '@images':      path.resolve(__dirname, 'src/assets/images/'),
+            "@components": path.resolve(__dirname, 'src/components/')
         }
     },
     module:{
         rules:[
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use:{
                     loader:'babel-loader',
-                    options:{
-                        presets:['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
-                    }
                 },
             },
             {
@@ -69,14 +65,6 @@ module.exports={
             filename:'assets/[name].[contenthash].css'
         }),
         new Dotenv(),
-        // new CopyPlugin({
-        //     patterns:[
-        //         {
-        //             from: path.resolve(__dirname,'src','assets/images'),
-        //             to: "assets/images"
-        //         }
-        //     ]
-        // }),
     ],
     optimization:{
         minimize: true,
